@@ -1,8 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_firebase/views/booksList.dart';
+import 'package:quiz_firebase/views/home.dart';
 import 'package:quiz_firebase/views/sign_in.dart';
 import 'package:quiz_firebase/views/sign_up.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -20,7 +25,8 @@ class MyApp extends StatelessWidget {
         home: SignIn(),
         routes: {
           SignIn.routename: (ctx) => SignIn(),
-          SignUp.routename: (ctx) => SignUp()
+          SignUp.routename: (ctx) => SignUp(),
+          Home.routName: (ctx) => Home()
         });
   }
 }

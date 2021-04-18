@@ -37,6 +37,7 @@ dependencies:
   random_string: ^2.1.0
   auto_validate: ^1.0.1
   dio: ^3.0.10
+  firebase_core: ^0.7.0
 
 dev_dependencies:
   flutter_test:

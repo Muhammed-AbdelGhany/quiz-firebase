@@ -1,5 +1,7 @@
 import 'package:auto_validate/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_firebase/services/auth.dart';
+import 'package:quiz_firebase/views/home.dart';
 import 'package:quiz_firebase/views/sign_up.dart';
 import 'package:quiz_firebase/widgets/widgets.dart';
 
@@ -13,10 +15,15 @@ class _SignInState extends State<SignIn> {
   final _formkey = GlobalKey<FormState>();
 
   String email, password;
+  Auth auth = new Auth();
 
-  onsave() {
+  onsave() async {
     if (_formkey.currentState.validate()) {
-      print('vald');
+      await auth.sigInEmailAndPassword(email, password).then((value) {
+        if (value != null) {
+          Navigator.of(context).pushReplacementNamed(Home.routName);
+        }
+      });
     }
   }
 
