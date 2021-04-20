@@ -16,3 +16,19 @@ Widget appbarText(BuildContext context) {
     ),
   );
 }
+
+Widget blueButton(BuildContext context, String title) {
+  return Container(
+    height: 50,
+    width: MediaQuery.of(context).size.width - 40,
+    alignment: Alignment.center,
+    decoration: BoxDecoration(
+      color: Colors.blue,
+      borderRadius: BorderRadius.circular(30),
+    ),
+    child: Text(
+      title,
+      style: TextStyle(color: Colors.white, fontSize: 16),
+    ),
+  );
+}
