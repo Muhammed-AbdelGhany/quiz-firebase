@@ -17,10 +17,10 @@ Widget appbarText(BuildContext context) {
   );
 }
 
-Widget blueButton(BuildContext context, String title) {
+Widget blueButton(BuildContext context, String title, double width) {
   return Container(
     height: 50,
-    width: MediaQuery.of(context).size.width - 40,
+    width: width,
     alignment: Alignment.center,
     decoration: BoxDecoration(
       color: Colors.blue,

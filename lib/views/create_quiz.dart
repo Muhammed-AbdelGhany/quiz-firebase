@@ -27,7 +27,9 @@ class _CreateQuizState extends State<CreateQuiz> {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => CreateQuestions(),
+              builder: (context) => CreateQuestions(
+                quizId: quizId,
+              ),
             ));
       });
     }
@@ -80,7 +82,9 @@ class _CreateQuizState extends State<CreateQuiz> {
               ),
               Spacer(),
               GestureDetector(
-                  onTap: createQuiz, child: blueButton(context, 'Create Quiz')),
+                  onTap: createQuiz,
+                  child: blueButton(context, 'Create Quiz',
+                      MediaQuery.of(context).size.width - 40)),
               SizedBox(
                 height: 60,
               )

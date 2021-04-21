@@ -84,7 +84,8 @@ class _SignUpState extends State<SignUp> {
                 ),
                 GestureDetector(
                   onTap: onSave,
-                  child: blueButton(context, 'Sign Up'),
+                  child: blueButton(context, 'Sign Up',
+                      MediaQuery.of(context).size.width - 40),
                 ),
                 SizedBox(
                   height: 30,
