@@ -23,4 +23,8 @@ class DataBaseServices {
       print(e.toString());
     }
   }
+
+  getQuizData() {
+    return FirebaseFirestore.instance.collection('Quiz').snapshots();
+  }
 }

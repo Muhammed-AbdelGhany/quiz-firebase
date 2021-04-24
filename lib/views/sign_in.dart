@@ -1,5 +1,6 @@
 import 'package:auto_validate/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_firebase/helpers/functions.dart';
 import 'package:quiz_firebase/services/auth.dart';
 import 'package:quiz_firebase/views/home.dart';
 import 'package:quiz_firebase/views/sign_up.dart';
@@ -28,6 +29,8 @@ class _SignInState extends State<SignIn> {
           _isloading = false;
         });
         if (value != null) {
+          HelperFunctions.saveUserLoginDetails(true);
+          print(HelperFunctions.getUserLoggedinDetails());
           Navigator.of(context).pushReplacementNamed(Home.routName);
         }
       });
