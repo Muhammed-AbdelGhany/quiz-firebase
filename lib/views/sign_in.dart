@@ -4,7 +4,7 @@ import 'package:quiz_firebase/helpers/functions.dart';
 import 'package:quiz_firebase/services/auth.dart';
 import 'package:quiz_firebase/views/home.dart';
 import 'package:quiz_firebase/views/sign_up.dart';
-import 'package:quiz_firebase/widgets/widgets.dart';
+import 'package:quiz_firebase/widgets/global%20widgets/widgets.dart';
 
 class SignIn extends StatefulWidget {
   static const routename = 'sign-in';
@@ -87,9 +87,8 @@ class _SignInState extends State<SignIn> {
                             ),
                             keyboardType: TextInputType.number,
                             onChanged: (value) => password = value,
-                            validator: (value) {
-                              return value.isEmpty ? 'Enter a Password' : null;
-                            },
+                            validator: (value) =>
+                                value.isEmpty ? 'Enter a Password' : null,
                           ),
                           SizedBox(
                             height: 30,

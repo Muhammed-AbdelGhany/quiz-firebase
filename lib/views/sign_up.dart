@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_firebase/services/auth.dart';
 import 'package:quiz_firebase/views/home.dart';
 import 'package:quiz_firebase/views/sign_in.dart';
-import 'package:quiz_firebase/widgets/widgets.dart';
+import 'package:quiz_firebase/widgets/global%20widgets/widgets.dart';
 
 class SignUp extends StatefulWidget {
   static const routename = 'sign-up';

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_firebase/helpers/functions.dart';
 import 'package:quiz_firebase/services/database.dart';
 import 'package:quiz_firebase/views/create_quiz.dart';
-import 'package:quiz_firebase/widgets/quiz_container.dart';
-import 'package:quiz_firebase/widgets/widgets.dart';
+import 'package:quiz_firebase/widgets/custom%20widgets/quiz_container.dart';
+import 'package:quiz_firebase/widgets/global%20widgets/widgets.dart';
 
 class Home extends StatefulWidget {
   static const routName = 'home';
@@ -27,9 +27,11 @@ class _HomeState extends State<Home> {
                 itemCount: snapshot.data.docs.length,
                 itemBuilder: (ctx, i) {
                   return QuizContainer(
-                      imageUrl: snapshot.data.docs[i]['quizimageUrl'],
-                      title: snapshot.data.docs[i]['quizTitle'],
-                      description: snapshot.data.docs[i]['quizDiscreption']);
+                    imageUrl: snapshot.data.docs[i]['quizimageUrl'],
+                    title: snapshot.data.docs[i]['quizTitle'],
+                    description: snapshot.data.docs[i]['quizDiscreption'],
+                    quizId: snapshot.data.docs[i]['quizId'],
+                  );
                 }));
   }
 

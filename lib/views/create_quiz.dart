@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_firebase/services/database.dart';
 import 'package:quiz_firebase/views/create_questions.dart';
-import 'package:quiz_firebase/widgets/widgets.dart';
+import 'package:quiz_firebase/widgets/global%20widgets/widgets.dart';
 import 'package:random_string/random_string.dart';
 
 class CreateQuiz extends StatefulWidget {

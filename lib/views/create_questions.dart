@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_firebase/services/database.dart';
-import 'package:quiz_firebase/widgets/widgets.dart';
+import 'package:quiz_firebase/widgets/global%20widgets/widgets.dart';
 
 class CreateQuestions extends StatefulWidget {
   final quizId;
@@ -37,6 +37,7 @@ class _CreateQuestionsState extends State<CreateQuestions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: appbarText(context),
         backgroundColor: Colors.transparent,
