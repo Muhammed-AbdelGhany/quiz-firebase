@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_firebase/models/question.dart';
 import 'package:quiz_firebase/services/database.dart';
+import 'package:quiz_firebase/widgets/custom%20widgets/options_widget.dart';
 import 'package:quiz_firebase/widgets/custom%20widgets/question_labels.dart';
+import 'package:quiz_firebase/widgets/custom%20widgets/question_widget.dart';
 import 'package:quiz_firebase/widgets/global%20widgets/widgets.dart';
 
 class PlayQuiz extends StatefulWidget {
@@ -12,16 +16,36 @@ class PlayQuiz extends StatefulWidget {
 
 class _PlayQuizState extends State<PlayQuiz> {
   DataBaseServices db = new DataBaseServices();
+  QuerySnapshot questionsSnapshot;
 
-  getQuestionData() async {
-    await db
-        .getQuestionsData(widget.quizId)
-        .then((value) => print(value.docs[1]['option1']));
+  Question getQuestionFromSnapshot(DocumentSnapshot questionSnapShot) {
+    Question question = new Question();
+    question.question = questionSnapShot.data()['question'];
+    List options = [
+      questionSnapShot.data()['option1'],
+      questionSnapShot.data()['option2'],
+      questionSnapShot.data()['option3'],
+      questionSnapShot.data()['option4']
+    ];
+    options.shuffle();
+
+    question.option1 = options[0];
+    question.option2 = options[1];
+    question.option3 = options[2];
+    question.option4 = options[3];
+    question.correctOption = questionSnapShot.data()['option1'];
+    question.answered = false;
+
+    return question;
   }
 
   @override
   void initState() {
-    getQuestionData();
+    db.getQuestionsData(widget.quizId).then((value) {
+      setState(() {
+        questionsSnapshot = value;
+      });
+    });
     super.initState();
   }
 
@@ -36,33 +60,22 @@ class _PlayQuizState extends State<PlayQuiz> {
         iconTheme: IconThemeData(color: Colors.black),
         title: appbarText(context),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                QuestionsLabels(
-                  text: 'Total',
-                  value: '1',
-                ),
-                QuestionsLabels(
-                  text: 'Total',
-                  value: '1',
-                ),
-                QuestionsLabels(
-                  text: 'Total',
-                  value: '1',
-                ),
-                QuestionsLabels(
-                  text: 'Total',
-                  value: '1',
-                ),
-              ],
-            ),
-          ]),
-        ),
+      body: Container(
+        child: Column(children: [
+          questionsSnapshot != null
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  //physics: ClampingScrollPhysics(),
+                  itemCount: questionsSnapshot.docs.length,
+                  itemBuilder: (ctx, i) {
+                    return QuestionWidget(
+                      total: questionsSnapshot.docs.length,
+                      question:
+                          getQuestionFromSnapshot(questionsSnapshot.docs[i]),
+                    );
+                  })
+              : Center()
+        ]),
       ),
     );
   }

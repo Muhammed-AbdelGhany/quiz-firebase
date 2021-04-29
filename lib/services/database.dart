@@ -28,7 +28,7 @@ class DataBaseServices {
     return FirebaseFirestore.instance.collection('Quiz').snapshots();
   }
 
-  Future getQuestionsData(String quizId) async {
+  getQuestionsData(String quizId) async {
     return await FirebaseFirestore.instance
         .collection('Quiz')
         .doc(quizId)
